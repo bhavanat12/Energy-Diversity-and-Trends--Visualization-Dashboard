@@ -1,0 +1,1053 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="script-testing.js"></script>
+  <script src="script-countselect.js"></script>
+  <script src="script-countselectenergy.js"></script>
+  <script src="script-updateChart.js"></script>
+  <script src="script-updateEnergychart.js"></script>
+  <script src="script-updatebrushChart.js"></script>
+  <script src="script-countselectpcp.js"></script>
+  <script src="script-updateBarPlot.js"></script>
+  <style>
+    .tooltip {
+        position: absolute;
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        pointer-events: none;
+    }
+  </style>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Socio-economic trends over time</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'css/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'css/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/vendor/quill/quill.snow.css' %}" rel="stylesheet">
+  <link href="{% static 'css/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+  <link href="{% static 'css/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'css/vendor/simple-datatables/style.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: Mar 09 2023 with Bootstrap v5.2.3
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <!-- <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="{% static 'img/logo.png' %}" alt="">
+        <span class="d-none d-lg-block">WDI Dashboard</span>
+      </a>
+      
+    </div>
+
+  </header> -->
+  <!-- End Header -->
+
+    
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="card">
+            <div class="card-body">
+              <center><span><h5 class="card-title">Access to electricity(% of population) 
+
+              <select id="yearelec" onchange="leaveChange()">
+                <option value="1960">1960</option>
+                <option value="1961">1961</option>
+                <option value="1962">1962</option>
+                <option value="1963">1963</option>
+                <option value="1964">1964</option>
+                <option value="1965">1965</option>
+                <option value="1966">1966</option>
+                <option value="1967">1967</option>
+                <option value="1968">1968</option>
+                <option value="1969">1969</option>
+                <option value="1970">1970</option>
+                <option value="1971">1971</option>
+                <option value="1972">1972</option>
+                <option value="1973">1973</option>
+                <option value="1974">1974</option>
+                <option value="1975">1975</option>
+                <option value="1976">1976</option>
+                <option value="1977">1977</option>
+                <option value="1978">1978</option>
+                <option value="1979">1979</option>
+                <option value="1980">1980</option>
+                <option value="1981">1981</option>
+                <option value="1982">1982</option>
+                <option value="1983">1983</option>
+                <option value="1984">1984</option>
+                <option value="1985">1985</option>
+                <option value="1986">1986</option>
+                <option value="1987">1987</option>
+                <option value="1988">1988</option>
+                <option value="1989">1989</option>
+                <option value="1990">1990</option>
+                <option value="1991">1991</option>
+                <option value="1992">1992</option>
+                <option value="1993">1993</option>
+                <option value="1994">1994</option>
+                <option value="1995">1995</option>
+                <option value="1996">1996</option>
+                <option value="1997">1997</option>
+                <option value="1998">1998</option>
+                <option value="1999">1999</option>
+                <option value="2000">2000</option>
+                <option value="2001">2001</option>
+                <option value="2002">2002</option>
+                <option value="2003">2003</option>
+                <option value="2004">2004</option>
+                <option value="2005">2005</option>
+                <option value="2006">2006</option>
+                <option value="2007">2007</option>
+                <option value="2008">2008</option>
+                <option value="2009">2009</option>
+                <option value="2010">2010</option>
+                <option value="2011">2011</option>
+                <option value="2012">2012</option>
+                <option value="2013">2013</option>
+                <option value="2014">2014</option>
+                <option value="2015" selected="selected">2015</option>
+                <option value="2016">2016</option>
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+              </select></h5></span></center>
+
+              <!-- Line Chart -->
+              <script src="http://d3js.org/d3.v4.js"></script>
+              <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+              <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
+              <!-- Create an element where the map will take place -->
+              
+              <svg id="my_dataviz" width="470" height="245"></svg>
+              <b><p id="countVal">India</p></b>
+              
+              <script>
+                var mapData = 0
+                var topotemp = 0
+                var datatemp = 0
+                var data_elec = JSON.parse("{{ context.world_electricity | escapejs }}");
+                
+                function updateMap(year){
+
+                  // The svg
+                  var svg = d3.select("svg"),
+                    width = +svg.attr("width"),
+                    height = +svg.attr("height");
+
+                  // Map and projection
+                  var path = d3.geoPath();
+                  var projection = d3.geoMercator()
+                    .scale(70)
+                    .center([0,20])
+                    .translate([width / 2, 30+ height / 2]);
+
+                  // Data and color scale
+                  console.log("***");
+                  var data;
+                  if (mapData != 0)
+                    data = mapData;
+                  else
+                    data = d3.map();
+                  mapData = data
+                  console.log(data);
+                  var colorScale = d3.scaleThreshold()
+                    .domain([0, 40, 75, 80, 90, 95, 98, 100])
+                    .range(d3.schemeBlues[9]);
+
+                  // Load external data and boot
+                  d3.queue()
+                    .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
+                    .defer(d3.csv, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world_population.csv", function(d) { data.set(d.code, +d.pop); })
+                    .await(ready);
+
+                
+                  datatemp = data
+
+                  function ready(error, topo) {
+                    if (topotemp == 0)
+                      topotemp = topo
+
+                    var tooltip = d3.select("body")
+                    .append("div")
+                    .attr("class", "tooltip")
+                    .style("opacity", 0);
+
+                    data = datatemp
+                    console.log("**")
+                    console.log(data)
+                    let mouseOver = function(d) {
+                      console.log(d)
+                      d3.selectAll(".Country")
+                        .transition()
+                        .duration(200)
+                        .style("opacity", .5)
+                      d3.select(this)
+                        .transition()
+                        .duration(200)
+                        .style("opacity", 1)
+                        .style("stroke", "black")
+                      tooltip.html("Country: " + d.properties.name + "<br/>" + "Total: " + d.total + "%")
+                        .style("left", (d3.event.pageX + 10) + "px")
+                        .style("top", (d3.event.pageY - 28) + "px")
+                        .style("opacity", 1)
+                    }
+
+                    let mouseLeave = function(d) {
+                      d3.selectAll(".Country")
+                        .transition()
+                        .duration(200)
+                        .style("opacity", .8)
+                      d3.select(this)
+                        .transition()
+                        .duration(200)
+                        .style("stroke", "transparent")
+                      tooltip.style("opacity", 0)
+                    }
+
+                    let testing = function(d) {
+                      
+                      countryVal = d.properties.name
+                      document.getElementById("countVal").innerHTML = countryVal
+                      console.log("Thereeeee")
+                      console.log(document.getElementById("countVal"))
+                      countselect(d.id, d.properties.name)
+                      countselectenergy(d.id, d.properties.name)
+                      countselectpcp(d.id, d.properties.name)
+                    }
+
+                    console.log(year);
+                  
+                      // Draw the map
+                      svg.append("g")
+                        .selectAll("path")
+                        .data(topotemp.features)
+                        .enter()
+                        .append("path")
+                          // draw each country
+                          .attr("d", d3.geoPath()
+                            .projection(projection)
+                          )
+                          // set the color of each country
+                          .attr("fill", function (d) {
+                            d.total = 0;
+                            if(d.id in data_elec)
+                            {
+                              d.total = +data_elec[d.id][year-1960] || 0;
+                            }
+                            return colorScale(d.total);
+                          })
+                          .style("stroke", "transparent")
+                          .attr("class", function(d){ return "Country" } )
+                          .style("opacity", .8)
+                          .on("mouseover", mouseOver )
+                          .on("mouseleave", mouseLeave )
+                          .on("click", testing)
+
+                  }
+              }
+              updateMap(2015);
+
+              function leaveChange() {
+                    year = document.getElementById("yearelec").value;
+                    var svg = d3.select("svg")
+                    svg.selectAll("*").remove();
+                    updateMap(year);
+                    updateBarPlot(year);
+                }
+                
+              </script>
+              
+              <!-- End Line CHart -->
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-2">
+          <div class="card">
+            <div class="card-body">
+              <center><h5 class="card-title">DISCOVERING THE ENERGY DIVERSITY <br>AND <br>USAGE TRENDS</h5></center>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="card">
+            <div class="card-body">
+              <center><h5 class="card-title" id="linecharttitle">Access to electricity(% of population) in India</h5></center>
+
+              <!-- Bar Chart -->
+              <!-- <canvas id="barChart" style="max-height: 400px;"></canvas> -->
+              <!-- Load d3.js -->
+              <script src="https://d3js.org/d3.v4.js"></script>
+
+              <!-- Create a div where the graph will take place -->
+              <div id="my_dataviz_linescatter"></div>
+
+              <!-- Color Scale -->
+              <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+              <script>
+
+              function elecChart(countryValcode)
+              {
+
+                var data_elec = JSON.parse("{{ context.world_electricity | escapejs }}");
+                var data_elec_ru = JSON.parse("{{ context.world_electricity_ru | escapejs }}");
+                var data_elec_ur = JSON.parse("{{ context.world_electricity_ur | escapejs }}");
+                
+                // set the dimensions and margins of the graph
+                var margin = {top: 30, right: 25, bottom: 42, left: 45},
+                    width = 520 - margin.left - margin.right,
+                    height = 290 - margin.top - margin.bottom;
+
+                // append the svg object to the body of the page
+                var svg = d3.select("#my_dataviz_linescatter")
+                  .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                  .append("g")
+                    .attr("transform",
+                          "translate(" + margin.left + "," + margin.top + ")");
+
+                
+
+                // List of groups (here I have one group per column)
+                var allGroup = ["Total", "Rural", "Urban"]
+                
+                var dataReadyy = []
+                country_code = countryValcode
+                values_elec = []
+                values_elec_ru = []
+                values_elec_ur = []
+                min_val = 100
+                start = -1
+                for (let i=0; i<59; i++)
+                {
+                  if(data_elec[country_code][i] != 'nan')
+                  {
+                    if(start==-1)
+                      start = i
+                    min_val = Math.min(min_val, +data_elec[country_code][i]);
+                    values_elec.push({time: i+1960, value: data_elec[country_code][i]});
+                  }
+                  if(data_elec_ru[country_code][i] != 'nan')
+                  {
+                    min_val = Math.min(min_val, +data_elec_ru[country_code][i]);
+                    values_elec_ru.push({time: i+1960, value: data_elec_ru[country_code][i]});
+                  }
+                  if(data_elec_ur[country_code][i] != 'nan')
+                  {
+                    min_val = Math.min(min_val, +data_elec_ur[country_code][i]);
+                    values_elec_ur.push({time: i+1960, value: data_elec_ur[country_code][i]});
+                  }
+                }
+
+                dataReadyy.push({name: "Total", values: values_elec},
+                {name: "Rural", values: values_elec_ru},
+                {name: "Urban", values: values_elec_ur});
+
+                console.log(dataReadyy);
+
+
+                // A color scale: one color for each group
+                var myColor = d3.scaleOrdinal()
+                  .domain(allGroup)
+                  .range(d3.schemeSet2);
+
+                // Add X axis --> it is a date format
+                var xLine = d3.scaleLinear()
+                  .domain([start+1960,2018])
+                  .range([ 0, width ]);
+
+
+                var xAxisLine = svg.append("g")
+                  .attr("transform", "translate(0," + height + ")")
+                  .call(d3.axisBottom(xLine));
+                  // .selectAll("text") // select all text elements in the x-axis
+                  // .attr("transform", "rotate(-45)") // rotate the text by 45 degrees
+                  // .style("text-anchor", "end"); // adjust the text anchor for proper alignment
+                
+
+                // Add Y axis
+                console.log(min_val);
+                var y = d3.scaleLinear()
+                  .domain( [Math.floor(min_val),100])
+                  .range([ height, 0 ]);
+                svg.append("g")
+                  .call(d3.axisLeft(y));
+
+                // Add a clipPath: everything out of this area won't be drawn.
+                var clip = svg.append("defs").append("svg:clipPath")
+                    .attr("id", "clip")
+                    .append("svg:rect")
+                    .attr("width", width )
+                    .attr("height", height )
+                    .attr("x", 0)
+                    .attr("y", 0);
+
+                // Add brushing
+                var brush = d3.brushX()  // Add the brush feature using the d3.brush function
+                    .extent( [ [0,0], [width,height] ] ) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+                    .on("end", updateChart) // Each time the brush selection changes, trigger the 'updateChart' function
+
+                // Create the scatter variable: where both the circles and the brush take place
+                var scatter = svg.append('g')
+                  .attr("clip-path", "url(#clip)")
+
+                // Add the lines
+                var line = d3.line()
+                  .x(function(d) { return xLine(+d.time) })
+                  .y(function(d) { return y(+d.value) })
+
+                scatter
+                  .selectAll("myLines")
+                  .data(dataReadyy)
+                  .enter()
+                  .append("path")
+                    .attr("class", function(d){ return d.name })
+                    .attr("d", function(d){ return line(d.values) } )
+                    .attr("stroke", function(d){ return myColor(d.name) })
+                    .style("stroke-width", 4)
+                    .style("fill", "none")
+
+                
+                // Add the points
+                scatter
+                  // First we need to enter in a group
+                  .selectAll("myDots")
+                  .data(dataReadyy)
+                  .enter()
+                    .append('g')
+                    .style("fill", function(d){ return myColor(d.name) })
+                    .attr("class", function(d){ return d.name })
+                  // Second we need to enter in the 'values' part of this group
+                  .selectAll("myPoints")
+                  .data(function(d){ return d.values })
+                  .enter()
+                  .append("circle")
+                    .attr("cx", function(d) { return xLine(d.time) } )
+                    .attr("cy", function(d) { return y(d.value) } )
+                    .attr("r", 5)
+                    .attr("stroke", "white")
+
+                // Add the brushing
+                scatter
+                  .append("g")
+                    .attr("class", "brush")
+                    .call(brush);
+
+
+                      // Add y-axis label
+                      svg.append("text")
+                          .attr("class", "Percentage") // Add a class for styling
+                          .attr("text-anchor", "middle") // Set the text-anchor to middle
+                          .attr("transform", "rotate(-90)") // Rotate the label 90 degrees
+                          .attr("x", -height / 2 + 5) // Set the x-coordinate of the label
+                          .attr("y", -margin.left + 20) // Set the y-coordinate of the label
+                          .text("Percentage"); // Set the text of the label
+
+
+                      // Add x-axis label
+                      svg.append("text")
+                          .attr("class", "years") // Add a class for styling
+                          .attr("text-anchor", "middle") // Set the text-anchor to middle
+                          .attr("x", width / 2) // Set the x-coordinate of the label
+                          .attr("y", height + margin.bottom + 0) // Set the y-coordinate of the label
+                          .text("Years"); // Set the text of the label
+
+
+                // Add a legend (interactive)
+                svg
+                  .selectAll("myLegend")
+                  .data(dataReadyy)
+                  .enter()
+                    .append('g')
+                    .append("text")
+                      .attr('x', function(d,i){ return 30 + i*60})
+                      .attr('y',-15)
+                      .text(function(d) { return d.name; })
+                      .style("fill", function(d){ return myColor(d.name) })
+                      .style("font-size", 15)
+                    .on("click", function(d){
+                      // is the element currently visible ?
+                      currentOpacity = d3.selectAll("." + d.name).style("opacity")
+                      // Change the opacity: from 0 to 1 or from 1 to 0
+                      d3.selectAll("." + d.name).transition().style("opacity", currentOpacity == 1 ? 0:1)
+
+                    })
+
+
+                // A function that set idleTimeOut to null
+                var idleTimeout
+                function idled() { idleTimeout = null; }
+
+                // A function that update the chart for given boundaries
+                function updateChart() {
+
+                  extent = d3.event.selection
+                  updatebrushChart(extent)
+
+                  // If no selection, back to initial coordinate. Otherwise, update X axis domain
+                  if(!extent){
+                    if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
+                    xLine.domain([start+1960,2018])
+                  }else{
+                    xLine.domain([ Math.floor(xLine.invert(extent[0])), Math.floor(xLine.invert(extent[1])) ])
+                    scatter.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
+                  }
+
+                
+
+                  // Update axis and circle position
+                  xAxisLine.transition().duration(1000).call(d3.axisBottom(xLine))
+                  
+                  scatter.selectAll("path")
+                  .transition().duration(1000)
+                    .attr("class", function(d){ return d.name })
+                    .attr("d", function(d){ return line(d.values) } )
+                    .attr("stroke", function(d){ return myColor(d.name) })
+                    .style("stroke-width", 4)
+                    .style("fill", "none")
+
+                  scatter
+                  .selectAll("circle")
+                  .transition().duration(1000)
+                    .attr("cx", function(d) { return xLine(d.time) } )
+                    .attr("cy", function(d) { return y(d.value) } )
+                    .attr("r", 5)
+                    .attr("stroke", "white")
+
+                  
+              
+                  }
+              }
+
+              function countselect(countryValcode, countryValname)
+              {
+                    console.log(countryValcode);
+                    var svg = d3.select("#my_dataviz_linescatter")
+                    svg.selectAll("*").remove();
+                    elecChart(countryValcode);
+                    document.getElementById("linecharttitle").innerHTML = `Access to electricity(% of population) in ${countryValname}`
+              }
+
+              elecChart('IND');
+              </script>
+
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-lg-5">
+          <div class="card">
+            <div class="card-body">
+              <center><h5 class="card-title" id="energytitle">Energy resource usage in India</h5></center>
+
+              <div id="chartareass"></div>
+              <script src="https://d3js.org/d3.v7.min.js"></script>
+              <script>
+
+               function updateEnergychart(countryValcode1)
+               {
+                  var data = JSON.parse("{{ context.world_energy | escapejs }}");
+
+                  const keys = ["Fossil", "Hydro", "Renew"];
+
+                  country_energy_data = []
+                  for(let i=0; i<data.length; i++)
+                  {
+                    if(data[i].Countrycode == countryValcode1)
+                      country_energy_data.push(data[i])
+                  }
+
+                  var margin = { top: 20, right: 90, bottom: 30, left: 50 };
+                  var width = 520 - margin.left - margin.right;
+                  var height = 290 - margin.top - margin.bottom;
+                  
+
+                  var svg = d3
+                    .select("#chartareass")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                  var x = d3
+                    .scaleLinear()
+                    .domain(d3.extent(country_energy_data, (d) => d.year))
+                    .range([0, width]);
+
+                  var y = d3
+                  .scaleLinear()
+                  .domain([0, d3.max(country_energy_data, (d) => d3.sum(keys, (key) => d[key]))])
+                  .range([height, 0]);
+
+                  var z = d3.scaleOrdinal().range(["#4daf4a", "#984ea3", "#ff7f00"]);
+
+                  const stack = d3.stack().keys(keys)(country_energy_data);
+                  console.log(stack)
+
+                  y.domain([0, d3.max(stack, (d) => d3.max(d, (dd) => dd[1]))]).nice();
+
+                  const area = d3
+                    .area()
+                    .x((d) => x(d.data.year))
+                    .y0((d) => y(d[0]))
+                    .y1((d) => y(d[1]))
+                    .curve(d3.curveCardinal);
+
+                  svg
+                    .selectAll(".area")
+                    .data(stack)
+                    .enter().append('path')
+                    .attr("class", "area")
+                    .attr("d", area)
+                    .style("fill", (d) => z(d.key))
+                    .append("title")
+                    .text((d) => d.key); // Tooltip
+
+
+                    var xAxis = d3.axisBottom(x);
+                    var yAxis = d3.axisLeft(y);
+
+                    svg
+                      .append("g")
+                      .attr("class", "x-axis")
+                      .attr("transform", "translate(0," + height + ")")
+                      .call(xAxis);
+
+                    svg.append("g").attr("class", "y-axis").call(yAxis);
+
+                    svg
+                      .selectAll(".legend")
+                      .data(keys)
+                      .enter().append('rect')
+                      .attr("class", "legend")
+                      .attr("x", width + 5)
+                      .attr("y", (d, i) => 10 + i * 25)
+                      .attr("width", 20)
+                      .attr("height", 20)
+                      .style("fill", z);
+
+                    svg
+                    .selectAll(".legend-label")
+                    .data(keys)
+                    .enter().append('text')
+                    .attr("class", "legend-label")
+                    .attr("x", width + 28)
+                    .attr("y", (d, i) => 25 + i * 25)
+                    .text((d) => d);
+
+                    // Add y-axis label
+                    svg.append("text")
+                          .attr("class", "Percentage") // Add a class for styling
+                          .attr("text-anchor", "middle") // Set the text-anchor to middle
+                          .attr("transform", "rotate(-90)") // Rotate the label 90 degrees
+                          .attr("x", -height / 2 + 10) // Set the x-coordinate of the label
+                          .attr("y", -margin.left + 20) // Set the y-coordinate of the label
+                          .text("Percentage"); // Set the text of the label
+
+
+                      // Add x-axis label
+                      svg.append("text")
+                          .attr("class", "years") // Add a class for styling
+                          .attr("text-anchor", "middle") // Set the text-anchor to middle
+                          .attr("x", width / 2) // Set the x-coordinate of the label
+                          .attr("y", height + margin.bottom + 0) // Set the y-coordinate of the label
+                          .text("Years"); // Set the text of the label
+
+                }
+
+                // A function that set idleTimeOut to null
+                var idleTimeout
+                function idled() { idleTimeout = null; }
+
+                // A function that update the chart for given boundaries
+                function updatebrushChart(extent) {
+                    console.log("Im")
+                    console.log(extent)
+                }
+
+                function countselectenergy(countryValcode, countryValname)
+                {
+                    console.log(countryValcode);
+                    var svg = d3.select("#chartareass")
+                    svg.selectAll("*").remove();
+                    updateEnergychart(countryValcode);
+                    document.getElementById("energytitle").innerHTML = `Energy resource usage in ${countryValname}`
+                }
+                updateEnergychart('IND')
+              </script>
+              
+              <!-- End Doughnut CHart -->
+
+            </div>
+          </div>
+        </div>
+
+        
+      
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <center><h5 class="card-title" id="pcptitle">PCP Plot - India</h5></center>
+                                    <div class="dashone-bar-heading">
+                                        <div id="my_pcp_plot"></div>
+                                    </div>
+
+                                      <script src="https://d3js.org/d3.v4.js"></script>
+                                      <script>
+
+                                        function updatepcp(countryvalcode2)
+                                        {
+                                          var data_pcp = JSON.parse("{{ context.pcp_data | escapejs }}");
+
+                                          country = countryvalcode2
+                                          country_pcp_data = []
+                                          for(let i=0; i<data_pcp.length; i++)
+                                          {
+                                            if (data_pcp[i].countrycode == country)
+                                            {
+                                              data_pcp[i].coe = Number(data_pcp[i].coe)
+                                              data_pcp[i].egcom = Number(data_pcp[i].egcom)
+                                              data_pcp[i].pump = Number(data_pcp[i].pump)
+                                              data_pcp[i].forestarea = Number(data_pcp[i].forestarea)
+                                              data_pcp[i].combrenew = Number(data_pcp[i].combrenew)
+                                      
+                                              country_pcp_data.push(data_pcp[i])
+                                            }
+                                          }
+
+                                          console.log(country_pcp_data)
+
+                                          // set the dimensions and margins of the graph
+                                          var margin = {top: 50, right: 25, bottom: 30, left: 60},
+                                            width = 650 - margin.left - margin.right
+                                            height = 300 - margin.top - margin.bottom;
+                                          
+                                          // append the svg object to the body of the page
+                                          var svg = d3.select("#my_pcp_plot")
+                                          .append("svg")
+                                            .attr("width", width + margin.left + margin.right)
+                                            .attr("height", height + margin.top + margin.bottom)
+                                          .append("g")
+                                            .attr("transform",
+                                                  "translate(" + margin.left + "," + margin.top + ")");
+                                          
+                                          // Parse the Data
+                                          d3.csv("https://raw.githubusercontent.com/bhavanat12/CSE564-Lab1/master/ccGeneral_sample.csv", function(data) {
+                                          
+                                            var data = {{data | safe}}
+                                            dataPcp = data
+                                          
+                                            // Here I set the list of dimension manually to control the order of axis:
+                                            dimensions = ["coe", "egcom", "pump", "forestarea", "combrenew"]
+
+                                            
+                                            // For each dimension, I build a linear scale. I store all in a y object
+                                            var y = {}
+                                            for (i in dimensions) {
+                                              name = dimensions[i]
+                                              y[name] = d3.scaleLinear()
+                                                // .domain( [0,70] ) // --> Same axis range for each group
+                                                .domain( [1.5*d3.min(country_pcp_data, function(d) { return +d[name]; }), 1.5*d3.max(country_pcp_data, function(d) { return +d[name]; })]) // --> different axis range for each group --> 
+                                                .range([height, 0])
+                                            }
+                                          
+                                            // Build the X scale -> it find the best position for each Y axis
+                                            x = d3.scalePoint()
+                                              .range([0, width])
+                                              .domain(dimensions);
+                                          
+                                            
+                                          
+                                            // The path function take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
+                                            function path(d) {
+                                                return d3.line()(dimensions.map(function(p) {
+                                                  if (typeof d[p] === 'undefined' || isNaN(d[p])) {
+                                                    return [0.50*x(p), y[p](0)]; // use 0 or some other default value
+                                                  } else {
+                                                    return [0.50*x(p), y[p](d[p])];
+                                                  }
+                                                }).filter(function(p) { return !isNaN(p[1]) }));
+                                              }
+                                          
+                                            console.log("*")
+                                            // Draw the lines
+                                            svg
+                                              .selectAll("myLinespcp")
+                                              .data(country_pcp_data)
+                                              .enter()
+                                              .append("path")
+                                                .attr("class", function (d) { return "line cluster_" + d.cluster } ) // 2 class for each line: 'line' and the group name
+                                                .attr("d",  path)
+                                                .style("fill", "none" )
+                                                .style("stroke", "steelblue" )
+                                                .style("opacity", 0.5)
+                                                
+
+
+                                            
+                                            console.log("**")
+                                            // Draw the axis:
+                                            svg.selectAll("myAxis")
+                                              // For each dimension of the dataset I add a 'g' element:
+                                              .data(dimensions).enter()
+                                              .append("g")
+                                              .attr("class", "axis")
+                                              // I translate this element to its right position on the x axis
+                                              .attr("transform", function(d) {return "translate(" + 0.50*x(d) + ")"; })
+                                              // And I build the axis with the call function
+                                              .each(function(d) { d3.select(this).call(d3.axisLeft().ticks(5).scale(y[d])); })
+                                              // Add axis title
+                                              .append("text")
+                                                .attr("transform", "rotate(-45)") // rotate the text by -90 degrees
+                                                .style("text-anchor", "middle")
+                                                .attr("y", -19)
+                                                .text(function(d) { 
+                                                  if(d=='coe')
+                                                    return "CO2 emissions kg/$"
+                                                  else if(d=='combrenew')
+                                                    return "Combustible renewables %"
+                                                  else if(d=='forestarea')
+                                                    return "% Forest Area"
+                                                  else if(d=='pump')
+                                                    return "Pump price ($/liter)"
+                                                  else if(d=='egcom')
+                                                    return "% of clean energy"
+                                                })
+                                                .style("fill", "black")
+
+                                              console.log("***")
+                                                // Add click event listeners to axis titles
+                                            svg.selectAll(".axis text")
+                                                .style("cursor", "pointer")
+                                                .on("click", function(d) {
+                                                    console.log("clicked");
+                                                    console.log(dimensions)
+                                                    // Swap the clicked axis with the first axis
+                                                    var firstDimension = dimensions[0];
+                                                    var clickedDimension = d;
+                                                    console.log(firstDimension, clickedDimension)
+                                                    var tmp = y[firstDimension];
+                                                    y[firstDimension] = y[clickedDimension];
+                                                    y[clickedDimension] = tmp;
+
+                                                    dimensions[dimensions.indexOf(clickedDimension)] = firstDimension;
+                                                    dimensions[0] = clickedDimension;
+                                                    
+                                                    console.log(dimensions)
+                                                    // Update the X scale with the new dimension order
+                                                    x.domain(dimensions);
+                                                    // Update the position of the axis
+                                                    svg.selectAll(".axis")
+                                                      .transition()
+                                                      .duration(1000)
+                                                      .attr("transform", function(d) { return "translate(" + 0.50*x(d) + ")"; });
+                                                    // Update the position of the lines
+                                                    svg.selectAll(".line")
+                                                      .transition()
+                                                      .duration(1000)
+                                                      .attr("d", path);
+
+                                                });
+
+
+                                                // Add a button to swap the axes
+                                                d3.select("#my_pcp_plot")
+                                                  .append("button")
+                                                  .style("fill", "blue")
+                                                  .text("Reverse Axes")
+                                                  .style("position", "absolute")
+                                                  .style("bottom", "10px")
+                                                  .on("click", function() {
+                                                    // Swap the order of dimensions
+                                                    dimensions.reverse();
+                                                    // Update the X scale with the new dimension order
+                                                    x.domain(dimensions);
+                                                    // Update the position of the axis
+                                                    svg.selectAll(".axis")
+                                                      .transition()
+                                                      .duration(1000)
+                                                      .attr("transform", function(d) { return "translate(" + 0.50*x(d) + ")"; });
+                                                    // Update the position of the lines
+                                                    svg.selectAll(".line")
+                                                      .transition()
+                                                      .duration(1000)
+                                                      .attr("d", path);
+                                                  });
+
+                                                  
+                                          
+                                          })
+                                        }
+
+                                        function countselectpcp(countryValcode, countryValname)
+                                        {
+                                            console.log(countryValcode);
+                                            var svg = d3.select("#my_pcp_plot")
+                                            svg.selectAll("*").remove();
+                                            updatepcp(countryValcode);
+                                            document.getElementById("pcptitle").innerHTML = `PCP Plot - ${countryValname}`
+                                        }
+                                        updatepcp('IND')
+                                        
+                </script>
+                        
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-lg-3">
+          <div class="card">
+            <div class="card-body">
+              <center><h5 class="card-title" id="bartitle">Bar Plot - Renewable energy adoption (2015)</h5></center>
+                                    <div class="dashone-bar-heading">
+                                        <div id="my_bar_plot"></div>
+                                    </div>
+                                    <script src="https://d3js.org/d3.v4.js"></script>
+                                    <script>
+
+                                    function barplotdraw(yearval)
+                                    {
+
+                                      year = yearval
+                                      var bar_pcp = JSON.parse("{{ context.bar_plot_data | escapejs }}");
+                                      console.log(bar_pcp)
+                                      // set the dimensions and margins of the graph
+                                      var margin = {top: 20, right: 30, bottom: 40, left: 30},
+                                          width = 330 - margin.left - margin.right,
+                                          height = 300 - margin.top - margin.bottom;
+                                      
+                                      // append the svg object to the body of the page
+                                      var svg = d3.select("#my_bar_plot")
+                                        .append("svg")
+                                          .attr("width", width + margin.left + margin.right)
+                                          .attr("height", height + margin.top + margin.bottom)
+                                        .append("g")
+                                          .attr("transform",
+                                                "translate(" + margin.left + "," + margin.top + ")");
+                                      
+                                      
+                                        final_data = bar_pcp[String(year)]
+                                        // Add X axis
+                                        var x = d3.scaleLinear()
+                                          .domain([0, 100])
+                                          .range([ 0, width]);
+                                        svg.append("g")
+                                          .attr("transform", "translate(0," + height + ")")
+                                          .call(d3.axisBottom(x))
+                                          .selectAll("text")
+                                            .attr("transform", "translate(-10,0)rotate(-45)")
+                                            .style("text-anchor", "end");
+                                      
+                                        // Y axis
+                                        var y = d3.scaleBand()
+                                          .range([ 0, height ])
+                                          .domain(final_data.map(function(d) { return d.CountryCode; }))
+                                          .padding(.1);
+                                        svg.append("g")
+                                          .call(d3.axisLeft(y))
+                                      
+                                        //Bars
+                                        svg.selectAll("myRect")
+                                          .data(final_data)
+                                          .enter()
+                                          .append("rect")
+                                          .transition()
+                                          .duration(1000)
+                                          .attr("x", x(0) )
+                                          .attr("y", function(d) { return y(d.CountryCode); })
+                                          .attr("width", function(d) { return x(d.value); })
+                                          .attr("height", y.bandwidth() )
+                                          .attr("fill", "#69b3a2")
+                                      
+                                      
+                                          
+
+                                          // Add x-axis label
+                                          svg.append("text")
+                                              .attr("class", "years") // Add a class for styling
+                                              .attr("text-anchor", "middle") // Set the text-anchor to middle
+                                              .attr("x", width / 2) // Set the x-coordinate of the label
+                                              .attr("y", height + margin.bottom + 0) // Set the y-coordinate of the label
+                                              .text("Percentage"); // Set the text of the label
+                                      
+                                      
+                                    }
+
+                                    function updateBarPlot(year)
+                                    {
+                                      var svg = d3.select("#my_bar_plot")
+                                      svg.selectAll("*").remove();
+                                      barplotdraw(year);
+                                      document.getElementById("bartitle").innerHTML = `Bar Plot - Renewable energy adoption (${year})` 
+                                    }
+                                    barplotdraw(2015)
+                                    </script>
+
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'js/vendor/apexcharts/apexcharts.min.js' %}"></script>
+  <script src="{% static 'js/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/vendor/chart.js/chart.umd.js' %}"></script>
+  <script src="{% static 'js/vendor/echarts/echarts.min.js' %}"></script>
+  <script src="{% static 'js/vendor/quill/quill.min.js' %}"></script>
+  <script src="{% static 'js/vendor/simple-datatables/simple-datatables.js' %}"></script>
+  <script src="{% static 'js/vendor/tinymce/tinymce.min.js' %}"></script>
+  <script src="{% static 'js/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
